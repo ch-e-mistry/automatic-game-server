@@ -1,0 +1,51 @@
+---
+- name: Install Linux GSM
+  hosts: localhost
+  become: true
+  vars:
+    packages_dep: [mailx,postfix,curl,wget,tar,bzip2,gzip,unzip,python3,binutils,bc,jq,tmux,glibc.i686,libstdc++,libstdc++.i686]
+
+  tasks:
+    - name: PACKAGE MANAGER - Install required packages
+      yum:
+        name: '{{packages_dep}}'
+        state: latest
+
+    - name: Add a new user csgoserver
+      user:
+        name: csgoserver
+        shell: /bin/bash
+
+    - name: Copy install script to user's home
+      copy:
+        src: /provision/csgoserver
+        dest: /home/csgoserver/
+        owner: csgoserver
+        group: csgoserver
+        mode: 0755
+      delegate_to: localhost
+
+    - name: Install CS:GO via GSM
+      shell: /home/csgoserver/csgoserver auto-install
+      args:
+        executable: /bin/bash
+        chdir: /home/csgoserver/
+      become: yes
+      become_user: csgoserver
+
+    - name: Copy pre-configured server config
+      copy:
+        src: /provision/csgoserver.cfg
+        dest: /home/csgoserver/lgsm/config-lgsm/csgoserver/csgoserver.cfg
+        owner: csgoserver
+        group: csgoserver
+        mode: 0755
+      delegate_to: localhost
+      
+    - name: Start CS:GO via GSM
+      shell: /home/csgoserver/csgoserver start
+      args:
+        executable: /bin/bash
+        chdir: /home/csgoserver/
+      become: yes
+      become_user: csgoserver
