@@ -1,0 +1,16 @@
+[Unit]
+Description=LinuxGSM cs go Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+User=csgoserver
+WorkingDirectory=/home/csgoserver
+ExecStart=/bin/bash /home/csgoserver/csgoserver start
+ExecStop=/bin/bash /home/csgoserver/csgoserver stop
+Restart=no
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

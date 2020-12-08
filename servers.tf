@@ -2,7 +2,7 @@ resource "aws_instance" "csgo_ansible_instance" {
   ami           = "${data.aws_ami.Amazon_Linux.id}"
   instance_type = "${var.instance_type}"
   key_name      = "${var.key_name}"
-  subnet_id     = "${aws_subnet.public_subnet_us_east_1a.id}"
+  subnet_id     = "${aws_subnet.public_subnet_a.id}"
 
 root_block_device {
   volume_type = "gp2"
@@ -86,8 +86,8 @@ resource "null_resource" "csgo_post_install" {
   }
 
     provisioner "file" {
-    source      = "vagrant/provision/send_webhook.sh"
-    destination = "/tmp/send_webhook.sh"
+    source      = "vagrant/provision/server_config"
+    destination = "/provision/server_config"
 
     connection {
       host        = "${aws_instance.csgo_ansible_instance.public_dns}"
@@ -98,8 +98,8 @@ resource "null_resource" "csgo_post_install" {
   }
 
     provisioner "file" {
-    source      = "vagrant/provision/send_webhook_destroy.sh" 
-    destination = "/tmp/send_webhook_destroy.sh"
+    source      = "vagrant/provision/gamemode_competitive.cfg"
+    destination = "/provision/gamemode_competitive.cfg"
 
     connection {
       host        = "${aws_instance.csgo_ansible_instance.public_dns}"
@@ -109,14 +109,37 @@ resource "null_resource" "csgo_post_install" {
     }
   }
 
+    provisioner "file" {
+    source      = "vagrant/provision/csgo.service"
+    destination = "/provision/csgo.service"
+
+    connection {
+      host        = "${aws_instance.csgo_ansible_instance.public_dns}"
+      type        = "ssh"
+      user        = "${var.ami_user}"
+      private_key = "${file("${var.private_key}")}"
+    }
+  }
+
+      provisioner "file" {
+      source      = "vagrant/provision/send_webhook.sh"
+      destination = "/tmp/send_webhook.sh"
+
+      connection {
+        host        = "${aws_instance.csgo_ansible_instance.public_dns}"
+        type        = "ssh"
+        user        = "${var.ami_user}"
+        private_key = "${file("${var.private_key}")}"
+      }
+    }
+
   provisioner "remote-exec" {
     inline = [
       "sudo chmod +x /tmp/os_dependencies.sh",
       "sudo /tmp/os_dependencies.sh",
       "ansible-playbook /tmp/gsm.yaml",
       "sudo chmod +x /tmp/send_webhook.sh",
-      "/tmp/send_webhook.sh"
-
+      "sudo /tmp/send_webhook.sh"
     ]
 
     connection {

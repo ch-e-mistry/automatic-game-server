@@ -62,7 +62,7 @@ variable "profile" {
 
 variable "instance_type" {
   type        = "string"
-  default     = "t2.micro"
+  default     = "t3a.medium"
   description = "AWS instance type. Define size of machine. https://aws.amazon.com/ec2/instance-types/"
 }
 
