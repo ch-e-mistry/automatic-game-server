@@ -59,7 +59,7 @@ As a result you will got a plan what you can apply with **"terraform apply"** co
 
 To be able to build a CS:GO server provided by steam, you need a GSLT code. For more information, please visit [this page](https://docs.linuxgsm.com/steamcmd/gslt).
 
-After it please add you personaized GSLT code to [csgoserver.cfg](\vagrant\provision\csgoserver.cfg).
+After it please add you personaized GSLT code to [csgoserver.cfg](vagrant/provision/csgoserver.cfg).
 
 ## Used technologies & Software
 
@@ -154,7 +154,7 @@ You have multiple way, how to connect to your customer server. Here is an [examp
 
 ## Common issues
 
-Check the following [markdown documentation](Documentation/common_issues/common_issues.mdDocumentation).
+Check the following [markdown documentation](Documentation/common_issues/common_issues.md).
 
 
 ## License
