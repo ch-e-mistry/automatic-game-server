@@ -1,0 +1,15 @@
+// CFG example with some useful commands
+// You should paste your moviemaking CFG here
+// cl_draw_only_deathnotices 1
+cl_clock_correction 0
+cl_drawHud 1
+cl_hud_playercount_showcount 1
+cl_hud_radar_scale  0.8
+mirv_fix playerAnimState 1
+mirv_streams record matPostprocessEnable 1
+mirv_streams record matDynamicTonemapping 1
+mirv_streams record matMotionBlurEnabled 0
+mirv_streams record matForceTonemapScale 0
+cl_net_graph 1
+cl_teamid_overhead 1
+hud_showtargetid 1

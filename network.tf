@@ -8,24 +8,24 @@ resource "aws_vpc" "automation-network" {
   }
 }
 
-resource "aws_subnet" "public_subnet_us_east_1a" {
+resource "aws_subnet" "public_subnet_a" {
   vpc_id                  = "${aws_vpc.automation-network.id}"
   cidr_block              = "172.31.1.0/24"
   map_public_ip_on_launch = true
-  availability_zone       = "us-east-1a"
+  availability_zone       = "${var.region}a"
 
   tags = {
-    Name = "Subnet public us-east-1a"
+    Name = "Subnet public a"
   }
 }
 
-resource "aws_subnet" "private_subnet_us_east_1b" {
+resource "aws_subnet" "private_subnet_b" {
   vpc_id            = "${aws_vpc.automation-network.id}"
   cidr_block        = "172.31.2.0/24"
-  availability_zone = "us-east-1b"
+  availability_zone = "${var.region}b"
 
   tags = {
-    Name = "Subnet private us-east-1b"
+    Name = "Subnet private b"
   }
 }
 

@@ -28,12 +28,14 @@ At the end you will got an ec2 instance in your configured AWS account with an i
     - [variables.tf](#variablestf)
   - [Inputs](#inputs)
   - [Outputs](#outputs)
+  - [Custom Counter Strike: Global Offensive settings](#custom-counter-strike-global-offensive-settings)
+  - [How-To play your in your new server](#how-to-play-your-in-your-new-server)
   - [License](#license)
   - [Author Information](#author-information)
 
 ## First usage
 
-Please pay attention for **PRE-REQUIRED!** section at the end of this readme (Inputs), especially:
+**[AWS account](https://aws.amazon.com/free/) (has free tier - credit card required) is a requirement**, as this terraform code will create resources on it. Please pay attention for **PRE-REQUIRED!** section at the end of this readme (Inputs), especially:
 
 - key_name
 - shared_credentials_file
@@ -76,6 +78,7 @@ Try / Check / Adjust and fine-tune the game server without any additional price.
 ### Usage
 
 Change your directory to the vagrant folder (in IDE / terminal) and execute `vagrant up` command which will create a virtual machine based on configured "Vagrantfile".
+After that you can connect to your dedicated Counter Strike: Global Offensive server in `192.168.56.56` address, port 27015 (default).
 
 ## Describe files
 
@@ -109,10 +112,10 @@ Definition of variables, created / used in code for terraform.
 | readme | **NOT PART OF CODE** Readme information. This readme was generated with terraform-docs. terraform-docs --with-aggregate-type-defaults --no-required --no-sort markdown . | string | `"terraform-docs"` |
 | key\_name | **PRE-REQUIRED!** SSH key name, used for linux instances. Must to be exist on AWS account before apply terraform code. | string | `"csgo"` |
 | shared\_credentials\_file | **PRE-REQUIRED!** Path of your AWS credentials file. Do NOT store it under version control system! | string | `"./secrets/credentials"` |
-| private\_key | **PRE-REQUIRED!** Path of your private SSH key. Required to connect target instance via SSH. | string | `"./secrets/csgo.key"` |
-| region | AWS region. Where to deploy with this Infrastructure-As-A-Code - terraform. | string | `"us-east-1"` |
+| private\_key | **PRE-REQUIRED!** Path of your private SSH key. Required to connect target instance via SSH. | string | `"./secrets/csgo_priv.key"` |
+| region | AWS region. Where to deploy with this Infrastructure-As-A-Code - terraform. | string | `"eu-west-1"` |
 | profile | AWS Credential(s) profile. Define the name of the profile as defined in your aws credentials file. | string | `"default"` |
-| instance\_type | AWS instance type. Define size of machine. https://aws.amazon.com/ec2/instance-types/ | string | `"t2.micro"` |
+| instance\_type | AWS instance type. Define size of machine. <https://aws.amazon.com/ec2/instance-types/> | string | `"t3a.medium"` |
 | ami\_user | SSH user, used for login to linux instance. Depends on used AMI. | string | `"ec2-user"` |
 
 ## Outputs
@@ -120,6 +123,18 @@ Definition of variables, created / used in code for terraform.
 | Name | Description |
 |------|-------------|
 | Counter\_Strike\_Global\_Offensive\_server\_address | IP address of created cs go server. |
+
+## Custom Counter Strike: Global Offensive settings
+
+All fine-tune and modifications are in:
+
+- [csgoserver.cfg](vagrant/provision/csgoserver.cfg)
+- [server_config](/vagrant/provision/server_config)
+- [gamemode_competitive.cfg](/vagrant/provision/gamemode_competitive.cfg)
+
+## How-To play your in your new server
+
+You have multiple way, how to connect to your customer server. Here is an [example](https://nodecraft.com/support/games/csgo/how-to-quickly-find-and-join-your-cs-go-server).
 
 ## License
 

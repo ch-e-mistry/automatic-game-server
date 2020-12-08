@@ -1,0 +1,124 @@
+// ************************************************************************** //
+//                                                                            //
+//     Counter-Strike: Global Offensive - server.cfg                          //
+//     Version 120719                                                         //
+//                                                                            //
+// ************************************************************************** //
+
+// .................................. Basic ................................. //
+
+// Hostname - Name of the server.
+hostname "DevOps Team building"
+
+// #todo change remote console password
+// RCON - remote console password.
+rcon_password "devops"
+
+// #todo change server password
+// Server password - for private servers.
+sv_password "verysecret"
+
+// Email - Server admin email.
+// Example: sv_contact "email@example.com"
+sv_contact "petermikaczo@gmail.com"
+
+// LAN mode - Server is a LAN server; can't connect from the internet. VAC (Valve Anti-Cheat) is disabled in this mode.
+// Default: sv_lan 0
+sv_lan 0
+
+// Cheats mode - Server is disabled to use cheats by default;Commands like noclip,god are disabled to be exploited by the players. VAC (Valve Anti-Cheat) is disabled in this mode when value is set to '1'.
+// Default: sv_cheats 0
+// Cheats ON: sv_cheats 1
+sv_cheats 0
+
+// Tags - Used to provide extra information to clients when they're browsing for servers. Separate tags with a comma.
+// Example: sv_tags "128-tick,deathmatch,dm,ffa,pistol,dust2"
+sv_tags "devops,teambuilding"
+
+// Region - The region of the world to report this server in.
+// Default: -1
+// 0 - US East, 1 - US West, 2 - South America, 3 - Europe, 4 - Asia, 5 - Australia, 6 - Middle East, 7 - Africa
+sv_region 3
+
+// ............................. Server Logging ............................. //
+
+// Enable log - Enables logging to file, console, and udp < on | off >.
+// Recommended: log on
+log on
+
+// Log bans - Log server bans in the server logs.
+// Default: sv_logbans 1
+// Recommended: sv_logbans 1
+sv_logbans 1
+
+// Log echo - Display log information to the server console.
+// Default: sv_logecho 1
+// Recommended: sv_logecho 1
+sv_logecho 1
+
+// Log file - Log server information in the log file.
+// Default: sv_logfile 1
+// Recommended: sv_logfile 1
+sv_logfile 1
+
+// One file log - Log server information to only one file.
+// Default: sv_log_onefile 0
+// Recommended: sv_log_onefile 0
+sv_log_onefile 0
+
+// Server Hibernation
+sv_hibernate_when_empty 1
+sv_hibernate_ms 5
+
+// ............................. Server Query ............................. //
+// More info at: https://www.gametracker.com/games/csgo/forum.php?thread=91691
+host_name_store 1
+host_info_show 1
+host_players_show 2
+
+// ................................ Ban List ................................ //
+
+// User ban - Server banlist based on user steam ID.
+// Recommended: exec banned_user.cfg
+exec banned_user.cfg
+
+// IP ban - Server banlist based on user IP.
+// Recommended: exec banned_ip.cfg
+exec banned_ip.cfg
+
+// Write ID - Writes a list of permanently-banned user IDs to banned_user.cfg.
+writeid
+
+// Write IP - Save the ban list to banned_ip.cfg.
+writeip
+
+// Enable auto-record of plays.
+tv_enable 1
+tv_autorecord 1
+tv_maxclients 0
+
+mp_teammates_are_enemys "1"
+mp_friendlyfire "1" //Enable Friendly Fire 1 =Enable 0 =Disable
+mp_autoteambalance "1" //Auto balaces the teams
+mp_autokick "1" //kicks idle or teamkilling players.
+mp_tkpunish "1" //Enables team killer punishment.
+sv_alltalk "1" //Players can hear all other players' voice communication, no team restrictions
+sv_deadtalk "1" //Dead players can speak (voice, text) to the living players.
+sv_full_alltalk "1" //Any player (including Spectator team) can speak to any other player
+sv_pausable "0" //Sets the server as pausable. If set as 1 anyone can pause it.
+mp_limitteams "2" //Maximum amount teams can be out of balance. 0 is off.
+sv_voiceenable "1" //Enabled and disables voice chat. Default: 1 which is on.
+sv_allow_lobby_connect_only "0" //If set to 1 it will only allow matchmaking games and not direct connections.
+sv_allow_wait_command "1" //Allow or disallow the wait command on clients connected to this server.
+sv_cheats "0" //Allow cheats on server. LEAVE OFF
+mp_freezetime "6" //How many seconds to keep players frozen when the round starts
+// The Bot Convars
+bot_difficulty 1 //Defines the skill of bots joining the game. Values are: 0=easy, 1=normal, 2=hard, 3=expert.
+bot_chatter "off" //Control how bots talk. Allowed values: 'off', 'radio', 'minimal', or 'normal
+bot_join_after_player 1 //If nonzero, bots wait until a player joins before entering the game.
+bot_quota 25 //Determines the total number of bots in the game.
+bot_quota_mode "match" //Determines the type of quota. Allowed values: 'normal', 'fill', and 'match
+
+game_mode 1;
+game_type 0;
+exec gamemode_competitive;

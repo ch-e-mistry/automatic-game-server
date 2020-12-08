@@ -33,7 +33,7 @@
       become: yes
       become_user: csgoserver
 
-    - name: Copy pre-configured server config
+    - name: Copy pre-configured server config with GSLT
       copy:
         src: /provision/csgoserver.cfg
         dest: /home/csgoserver/lgsm/config-lgsm/csgoserver/csgoserver.cfg
@@ -41,11 +41,36 @@
         group: csgoserver
         mode: 0755
       delegate_to: localhost
-      
-    - name: Start CS:GO via GSM
-      shell: /home/csgoserver/csgoserver start
-      args:
-        executable: /bin/bash
-        chdir: /home/csgoserver/
-      become: yes
-      become_user: csgoserver
+
+    - name: Copy pre-configured server config with details of server
+      copy:
+        src: /provision/server_config
+        dest: /home/csgoserver/serverfiles/csgo/cfg/csgoserver.cfg
+        owner: csgoserver
+        group: csgoserver
+        mode: 0755
+      delegate_to: localhost
+
+    - name: Copy pre-configured server config with friendly-fire and other tweaks
+      copy:
+        src: /provision/gamemode_competitive.cfg
+        dest: /home/csgoserver/serverfiles/csgo/cfg/gamemode_competitive.cfg
+        owner: csgoserver
+        group: csgoserver
+        mode: 0755
+      delegate_to: localhost
+
+    - name: Create csgo service
+      copy:
+        owner: root
+        group: root
+        mode: 0755
+        src: /provision/csgo.service
+        dest: /etc/systemd/system/csgo.service      
+
+    - name: Start csgo service
+      systemd:
+        enabled: yes
+        state: started
+        name: csgo
+        daemon_reload: yes 
