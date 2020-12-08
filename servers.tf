@@ -6,7 +6,7 @@ resource "aws_instance" "csgo_ansible_instance" {
 
 root_block_device {
   volume_type = "gp2"
-  volume_size = "30"
+  volume_size = "40"
   delete_on_termination = "true"
   }
 
@@ -18,6 +18,7 @@ root_block_device {
   tags = {
     Name       = "counter_strike_go_server"
     Automation = "true"
+    cost_category = "csgo"
   }
 }
 

@@ -5,6 +5,7 @@ resource "aws_vpc" "automation-network" {
 
   tags = {
     Name = "terraform_vpc"
+    cost_category = "csgo"
   }
 }
 
@@ -16,6 +17,7 @@ resource "aws_subnet" "public_subnet_a" {
 
   tags = {
     Name = "Subnet public a"
+    cost_category = "csgo"
   }
 }
 
@@ -26,6 +28,7 @@ resource "aws_subnet" "private_subnet_b" {
 
   tags = {
     Name = "Subnet private b"
+    cost_category = "csgo"
   }
 }
 
@@ -34,6 +37,7 @@ resource "aws_internet_gateway" "internet-gateway-terraform" {
 
   tags = {
     Name = "InternetGateway"
+    cost_category = "csgo"
   }
 }
 
@@ -48,6 +52,7 @@ resource "aws_security_group" "ssh" {
 
   tags = {
     Name = "terraform_sec_group_ssh"
+    cost_category = "csgo"
   }
 
   ingress {
@@ -75,6 +80,7 @@ resource "aws_security_group" "csgo" {
 
   tags = {
     Name = "terraform_sec_group_csgo"
+    cost_category = "csgo"
   }
 
   ingress {
