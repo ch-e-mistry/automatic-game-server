@@ -17,6 +17,7 @@ In this documentation you can find information about common issues.
 ## Could not satisfy plugin requirements
 
 You will see this error message if you left to initialize terraform.
+
 ![plugin](./no_initialization.png)
 
 ### Fix
@@ -374,6 +375,7 @@ The problem's source is the line ending of bash scripts.
 Be sure, that line endings in all of the bash script is `LF` instead of `CRLF`!
 
 It is visible like this in Visual Studio Code:
+
 ![crlf](./crlf.png)
 
 - Click on it and you should able to change it to `LF` like:
