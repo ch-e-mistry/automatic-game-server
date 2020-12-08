@@ -12,6 +12,9 @@ At the end you will got an ec2 instance in your configured AWS account with an i
 - [Automatic Games Server - Counter Strike: Global Offensive server](#automatic-games-server---counter-strike-global-offensive-server)
 - [Table of contents](#table-of-contents)
   - [First usage](#first-usage)
+    - [HowTo - Create and configure SSH-key](#howto---create-and-configure-ssh-key)
+    - [Terraform binary](#terraform-binary)
+    - [Configured GSLT code for server](#configured-gslt-code-for-server)
   - [Used technologies & Software](#used-technologies--software)
     - [Terraform](#terraform)
     - [Terraform providers](#terraform-providers)
@@ -30,6 +33,7 @@ At the end you will got an ec2 instance in your configured AWS account with an i
   - [Outputs](#outputs)
   - [Custom Counter Strike: Global Offensive settings](#custom-counter-strike-global-offensive-settings)
   - [How-To play your in your new server](#how-to-play-your-in-your-new-server)
+  - [Common issues](#common-issues)
   - [License](#license)
   - [Author Information](#author-information)
 
@@ -41,9 +45,21 @@ At the end you will got an ec2 instance in your configured AWS account with an i
 - shared_credentials_file
 - private_key
 
+### HowTo - Create and configure SSH-key
+
+Check the following [markdown documentation](Documentation/ssh_key/ssh_key.md).
+
+### Terraform binary
+
 Before you start to use this code, **terraform must to be installed**. Please follow official guides about [how to install it](https://learn.hashicorp.com/terraform/getting-started/install.html). If it was done, please apply **"terraform init"** command (in this repository's folder) to initialize required providers.
 
 As a result you will got a plan what you can apply with **"terraform apply"** command. When you finished the game, you can destroy all created resource with **"terraform destroy"** command.
+
+### Configured GSLT code for server
+
+To be able to build a CS:GO server provided by steam, you need a GSLT code. For more information, please visit [this page](https://docs.linuxgsm.com/steamcmd/gslt).
+
+After it please add you personaized GSLT code to [csgoserver.cfg](\vagrant\provision\csgoserver.cfg).
 
 ## Used technologies & Software
 
@@ -135,6 +151,11 @@ All fine-tune and modifications are in:
 ## How-To play your in your new server
 
 You have multiple way, how to connect to your customer server. Here is an [example](https://nodecraft.com/support/games/csgo/how-to-quickly-find-and-join-your-cs-go-server).
+
+## Common issues
+
+Check the following [markdown documentation](Documentation/common_issues/common_issues.mdDocumentation).
+
 
 ## License
 
